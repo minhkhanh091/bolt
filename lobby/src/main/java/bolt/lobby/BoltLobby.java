@@ -1,6 +1,9 @@
 package bolt.lobby;
 
 import bolt.core.BoltCore;
+import bolt.core.listeners.BlockBreakListener;
+import bolt.core.listeners.ItemDropListener;
+import bolt.core.listeners.ItemPickupListener;
 
 import net.minestom.server.MinecraftServer;
 import net.minestom.server.entity.Player;
@@ -13,6 +16,8 @@ import net.minestom.server.coordinate.Pos;
 public class BoltLobby {
     public static void main(String[] args) {
         BoltCore boltCore = new BoltCore("config.yml");
+
+        registerListeners();
 
         InstanceManager instanceManager = MinecraftServer.getInstanceManager();
         InstanceContainer instanceContainer = instanceManager.createInstanceContainer();
@@ -29,4 +34,10 @@ public class BoltLobby {
 
         boltCore.start();
     }
+
+    private static void registerListeners() {
+        MinecraftServer.getGlobalEventHandler().addListener(new BlockBreakListener());
+        MinecraftServer.getGlobalEventHandler().addListener(new ItemPickupListener());
+        MinecraftServer.getGlobalEventHandler().addListener(new ItemDropListener());
+    }    
 }
