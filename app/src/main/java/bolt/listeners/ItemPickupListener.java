@@ -21,7 +21,9 @@ public class ItemPickupListener implements EventListener<PickupItemEvent>{
         ItemEntity itemEntity = e.getItemEntity();
         ItemStack itemStack = itemEntity.getItemStack();
 
-        player.getInventory().addItemStack(itemStack);
+        if (player.getInventory().addItemStack(itemStack)) {
+            itemEntity.remove();
+        }
 
         player.sendMessage("You picked up a block!");
         

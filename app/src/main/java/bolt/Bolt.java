@@ -27,7 +27,8 @@ public class Bolt {
 
     private static void registerListeners() {
         MinecraftServer.getGlobalEventHandler().addListener(new BlockBreakListener());
-        MinecraftServer.getGlobalEventHandler().addListener(new BlockPickupListener());
+        MinecraftServer.getGlobalEventHandler().addListener(new ItemPickupListener());
+        MinecraftServer.getGlobalEventHandler().addListener(new ItemDropListener());
     }
 
     public static void main(String[] args) {
