@@ -1,0 +1,21 @@
+plugins {
+    id 'application'
+}
+
+application {
+    mainClass = 'bolt.lobby.BoltLobby'
+}
+
+dependencies {
+    implementation project(':core')
+}
+
+tasks.named('shadowJar') {
+    archiveBaseName = 'bolt-lobby'
+    archiveClassifier = ''
+    archiveVersion = ''
+}
+
+tasks.named('build') {
+    dependsOn tasks.named('shadowJar')
+}
